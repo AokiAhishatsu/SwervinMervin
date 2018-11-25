@@ -6,6 +6,11 @@ import pygame
 import game as g
 import settings as s
 
+import os
+
+# Fix FileNotFoundError: [Errno 2] No such file or directory: 'dat/highscores'
+os.chdir(os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir)))
+
 pygame.init()
 
 pygame.display.set_caption("Swervin' Mervin")

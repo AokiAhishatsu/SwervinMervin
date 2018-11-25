@@ -37,7 +37,7 @@ class TitleScreen():
     def state_0_step(self, window):
         w, h = s.DIMENSIONS
         colours = [(100, 100, 10), (120, 130, 10), (150, 160, 10), (170, 180, 10), (190, 200, 10)]
-        colour  = colours[(self.frame / 5) % 5]
+        colour  = colours[int((self.frame / 5)) % 5]
 
         window.blit(self.background, (0, 0), (0, self.bg_offset, w, h))
 

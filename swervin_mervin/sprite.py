@@ -14,13 +14,13 @@ class Sprite(wo.WorldObject):
         wo.WorldObject.__init__(self)
 
     def is_hooker(self):
-        return self.sprite.has_key("hooker")
+        return "hooker" in self.sprite.keys()
 
     def is_speed_boost(self):
-        return self.sprite.has_key("speed_boost")
+        return "speed_boost" in self.sprite.keys()
 
     def is_bonus(self):
-        return self.sprite.has_key("bonus")
+        return "bonus" in self.sprite.keys()
 
     def path(self):
         sprite_name = self.sprite["path"]

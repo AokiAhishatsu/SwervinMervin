@@ -42,11 +42,11 @@ class HighScores():
 
     def __read_high_scores(self):
         hs  = open(os.path.join("dat", "highscores"), "r")
-        jhs = map(lambda hs: [dt.datetime.strptime(hs[0], "%Y-%m-%d"), hs[1]], json.load(hs))
+        jhs = list(map(lambda hs: [dt.datetime.strptime(hs[0], "%Y-%m-%d"), hs[1]], json.load(hs)))
 
         hs.close()
 
         return jhs
 
     def __scores_only(self):
-        return map(lambda hs: hs[1], self.high_scores)
+        return list(map(lambda hs: hs[1], self.high_scores))
