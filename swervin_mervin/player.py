@@ -4,10 +4,12 @@ from enum import Enum
 import settings as s
 import util as u
 
+
 class PlayerStatus(Enum):
     alive = 0
     game_over  = 1
     level_over = 2
+
 
 class Player:
     """Represents the player in the game world."""

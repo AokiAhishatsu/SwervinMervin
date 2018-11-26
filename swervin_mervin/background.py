@@ -1,5 +1,7 @@
-import pygame, os
+import pygame
+import os
 import settings as s
+
 
 class Background:
     """Represents a single scrollable background in a level."""
@@ -39,18 +41,12 @@ class Background:
         if self.scale_height and self.height < self.visible_height:
             img = pygame.transform.scale(self.image, (self.width, int(self.visible_height)))
 
-        window.blit(img,
-          (0, self.y),
-          (c, 0, w, s.DIMENSIONS[1]))
+        window.blit(img, (0, self.y), (c, 0, w, s.DIMENSIONS[1]))
 
         # Fill empty space on the left of the screen.
         if c < 0:
-            window.blit(img,
-              (0, self.y),
-              (self.width + c, 0, -c, s.DIMENSIONS[1]))
+            window.blit(img, (0, self.y), (self.width + c, 0, -c, s.DIMENSIONS[1]))
 
         # Fill empty space on the right of the screen.
         elif c > (self.width - w):
-            window.blit(img,
-              (self.width - c, self.y),
-              (0, 0, (c - (self.width - w)), s.DIMENSIONS[1]))
+            window.blit(img, (self.width - c, self.y), (0, 0, (c - (self.width - w)), s.DIMENSIONS[1]))

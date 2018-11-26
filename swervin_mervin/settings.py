@@ -1,5 +1,6 @@
 from pygame import Color
-import math, os
+import math
+import os
 
 FPS                   = 60
 TITLE_FPS             = 20
@@ -10,7 +11,7 @@ LEVEL_OVER_LAG        = 8 * FPS
 TITLE_SCREEN          = True
 COUNTDOWN             = True
 PLAYER_SELECT         = True
-FULLSCREEN            = True
+FULLSCREEN            = False
 FRAME_RATE            = (1.0 / FPS)
 DIMENSIONS            = (640, 480)
 MUSIC_VOLUME          = 0.7

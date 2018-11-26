@@ -1,6 +1,7 @@
 import pygame
 import settings as s
 
+
 class Segment:
     """Represents a single segment in a level."""
 

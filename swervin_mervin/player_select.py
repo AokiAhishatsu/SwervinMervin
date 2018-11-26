@@ -2,7 +2,8 @@ import pygame, os
 import settings as s
 import util as u
 
-class PlayerSelect():
+
+class PlayerSelect:
     """Displays a player selection screen."""
 
     def __init__(self):

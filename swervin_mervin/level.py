@@ -1,11 +1,15 @@
-import csv, os, random
-import settings as s
-import segment as seg
-import competitor as c
+import csv
+import os
+import random
+
 import background as b
+import competitor as c
+import segment as seg
+import settings as s
 import sprite as sp
 import tunnel_entrance as te
 import tunnel_inside as ti
+
 
 class Level:
     """Represents a level in the game world."""

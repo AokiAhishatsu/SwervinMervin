@@ -27,7 +27,7 @@ class WorldObject:
         left_clip  = 0 if not segment.in_tunnel else max(x, 0) - segment.clip[0]
         right_clip = 0 if not segment.in_tunnel else segment.clip[2]
 
-        if right_clip > 0 and right_clip < (x + s_width):
+        if 0 < right_clip < (x + s_width):
             s_width -= int((x + s_width) - right_clip)
 
         if self.offset_y > 0:

@@ -2,6 +2,7 @@ import pygame, os
 import settings as s
 import world_object as wo
 
+
 class Competitor(wo.WorldObject):
     """Represents a single competitor car in a level."""
 

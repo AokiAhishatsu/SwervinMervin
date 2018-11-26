@@ -1,4 +1,8 @@
-import pygame, sys, os, math, random
+import pygame
+import os
+import math
+import random
+
 from pygame.locals import *
 import player as p
 import level as l
@@ -9,6 +13,7 @@ import settings as s
 import high_scores as hs
 import credits as c
 import util as u
+
 
 class Game:
     """Provides the game flow."""
@@ -62,7 +67,7 @@ class Game:
         if self.player.alive():
             self.__credits_screen()
 
-        ## Post-game high scores and wait for new player.
+        # Post-game high scores and wait for new player.
         if self.high_scores.is_high_score(self.player.points):
             self.high_scores.add_high_score(math.trunc(self.player.points))
 
@@ -116,16 +121,14 @@ class Game:
         p.handle_crash()
 
         # Sprinkle some random bonuses into the next lap if we are lucky.
-        if p.new_lap:
-            if random.randint(1, s.CHANCE_OF_BONUSES) == 1:
-                l.insert_bonuses()
+        if p.new_lap and random.randint(1, s.CHANCE_OF_BONUSES) == 1:
+            l.insert_bonuses()
 
         # Move the other players.
         for c in l.competitors:
             old_seg = l.find_segment(c.position)
             c.travel(l.track_length())
             new_seg = l.find_segment(c.position)
-
             c.play_engine(p.position)
 
             if old_seg.index != new_seg.index:
@@ -182,7 +185,7 @@ class Game:
             segment.render_grass(self.window)
             segment.render_road(self.window)
 
-            if (segment.top["screen"]["y"] > coverage[1].top["screen"]["y"]):
+            if segment.top["screen"]["y"] > coverage[1].top["screen"]["y"]:
                 coverage[1] = segment
 
             # Remember where we should draw the left and right tunnel walls.

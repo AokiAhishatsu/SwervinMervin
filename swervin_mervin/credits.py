@@ -1,7 +1,4 @@
-import pygame
-import settings as s
-
-class Credits():
+class Credits:
     """Plays the credits sequence at the end of the game."""
 
     def __init__(self):

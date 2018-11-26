@@ -23,7 +23,7 @@ class TunnelInside:
         # Left wall.
         l_bottom = coverage[0].bottom["screen"]
 
-        if l_bottom["w"] < s.DIMENSIONS[0] and l_bottom["w"] > 0:
+        if 0 < l_bottom["w"] < s.DIMENSIONS[0]:
             ly_bottom = (s.DIMENSIONS[1] - l_bottom["y"])
             l_x       = l_bottom["x"] - l_bottom["w"]
 
@@ -36,7 +36,7 @@ class TunnelInside:
         # Right wall.
         r_bottom = coverage[2].bottom["screen"]
 
-        if r_bottom["w"] < s.DIMENSIONS[0] and r_bottom["w"] > 0:
+        if 0 < r_bottom["w"] < s.DIMENSIONS[0]:
             ry_bottom = (s.DIMENSIONS[1] - r_bottom["y"])
             r_x       = r_bottom["x"] + r_bottom["w"]
 

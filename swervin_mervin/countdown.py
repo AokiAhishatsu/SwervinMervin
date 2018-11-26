@@ -2,7 +2,8 @@ import pygame, os
 import util as u
 import settings as s
 
-class CountDown():
+
+class CountDown:
     """Plays a countdown before the level starts."""
 
     def __init__(self, level_number, level_name):

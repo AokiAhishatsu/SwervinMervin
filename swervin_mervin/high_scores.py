@@ -1,7 +1,9 @@
-import json, os
 import datetime as dt
+import json
+import os
 
-class HighScores():
+
+class HighScores:
     """Wrapper over the high scores file."""
 
     def __init__(self):
