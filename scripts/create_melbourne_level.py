@@ -3,8 +3,8 @@
 import level as l
 
 segments = []
-sprites  = []
-name     = "melbourne"
+sprites = []
+name = "melbourne"
 
 segments += l.add_straight(100, 0)
 segments += l.add_corner(30, 85, 40, 5, 0, 20)
