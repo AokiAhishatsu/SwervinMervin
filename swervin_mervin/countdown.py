@@ -1,6 +1,7 @@
-import pygame, os
-import util as u
+import os
+import pygame
 import settings as s
+import util as u
 
 
 class CountDown:

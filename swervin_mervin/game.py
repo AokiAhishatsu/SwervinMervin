@@ -106,30 +106,30 @@ class Game:
 			self.clock.tick(s.FPS)
 
 	def __game_cycle(self):
-		p = self.player
-		l = self.level
+		player = self.player
+		lvl = self.level
 
-		p.travel(l.track_length(), self.window)
+		player.travel(lvl.track_length(), self.window)
 
-		base_segment = l.find_segment(p.position)
-		player_segment = l.find_segment(p.position + s.PLAYER_Z)
+		base_segment = lvl.find_segment(player.position)
+		player_segment = lvl.find_segment(player.position + s.PLAYER_Z)
 
-		p.accelerate()
-		p.steer(player_segment)
-		p.climb(base_segment)
-		p.detect_collisions(player_segment)
-		p.handle_crash()
+		player.accelerate()
+		player.steer(player_segment)
+		player.climb(base_segment)
+		player.detect_collisions(player_segment)
+		player.handle_crash()
 
 		# Sprinkle some random bonuses into the next lap if we are lucky.
-		if p.new_lap and random.randint(1, s.CHANCE_OF_BONUSES) == 1:
-			l.insert_bonuses()
+		if player.new_lap and random.randint(1, s.CHANCE_OF_BONUSES) == 1:
+			lvl.insert_bonuses()
 
 		# Move the other players.
-		for c in l.competitors:
-			old_seg = l.find_segment(c.position)
-			c.travel(l.track_length())
-			new_seg = l.find_segment(c.position)
-			c.play_engine(p.position)
+		for c in lvl.competitors:
+			old_seg = lvl.find_segment(c.position)
+			c.travel(lvl.track_length())
+			new_seg = lvl.find_segment(c.position)
+			c.play_engine(player.position)
 
 			if old_seg.index != new_seg.index:
 				if c in old_seg.competitors:
@@ -140,29 +140,29 @@ class Game:
 		tunnel_exit = base_segment
 		pre_renders = []
 		curve = 0
-		curve_delta = -(base_segment.curve * p.segment_percent())
+		curve_delta = -(base_segment.curve * player.segment_percent())
 
 		# Position backgrounds according to current curve.
-		for bg in l.backgrounds:
+		for bg in lvl.backgrounds:
 			if base_segment.curve != 0:
-				bg.step(base_segment.curve, p.speed_percent())
+				bg.step(base_segment.curve, player.speed_percent())
 			bg.render(self.window)
 
 		# Loop through segments we should draw for this frame.
 		for i in range(s.DRAW_DISTANCE):
-			segment = l.offset_segment(base_segment.index + i)
-			projected_position = p.position
-			camera_x = p.x * s.ROAD_WIDTH
+			segment = lvl.offset_segment(base_segment.index + i)
+			projected_position = player.position
+			camera_x = player.x * s.ROAD_WIDTH
 
 			# Past end of track and looped back.
 			if segment.index < base_segment.index:
-				projected_position -= l.track_length()
+				projected_position -= lvl.track_length()
 
 			segment.project(camera_x,
 			                curve,
 			                curve_delta,
 			                projected_position,
-			                p.y)
+			                player.y)
 
 			curve += curve_delta
 			curve_delta += segment.curve
@@ -211,7 +211,7 @@ class Game:
 			self.player.in_tunnel = False
 
 		# Let backgrounds know how much height they need to cover on the next paint.
-		for bg in l.backgrounds:
+		for bg in lvl.backgrounds:
 			bg.visible_height = s.DIMENSIONS[1] - coverage[1].top["screen"]["y"]
 
 		# Draw sprites in from back to front (painters algorithm).
@@ -219,14 +219,14 @@ class Game:
 			segment.render_polygons(self.window, coverage)
 
 		for i in reversed(range(1, s.DRAW_DISTANCE)):
-			segment = l.offset_segment(base_segment.index + i)
+			segment = lvl.offset_segment(base_segment.index + i)
 			segment.render_world_objects(self.window)
 
-		p.render(self.window, base_segment)
-		p.render_hud(self.window)
+		player.render(self.window, base_segment)
+		player.render_hud(self.window)
 
-		if p.blood_alpha > 0:
-			p.render_blood(self.window)
+		if player.blood_alpha > 0:
+			player.render_blood(self.window)
 
 		for e in pygame.event.get():
 			u.try_quit(e)
@@ -237,14 +237,14 @@ class Game:
 
 		# Steering, acceleration.
 		keys = pygame.key.get_pressed()
-		p.set_acceleration(keys)
-		p.set_direction(keys)
+		player.set_acceleration(keys)
+		player.set_direction(keys)
 
 	def __pause_cycle(self):
 		pause_font = pygame.font.Font(s.FONTS["retro_computer"], 64)
 		pause_text = pause_font.render("Paused", 1, s.COLOURS["text"])
-		x = (s.DIMENSIONS[0] - pause_text.get_width()) / 2
-		y = (s.DIMENSIONS[1] - pause_text.get_height()) / 2
+		x = (s.DIMENSIONS[0] - pause_text.get_width()) // 2
+		y = (s.DIMENSIONS[1] - pause_text.get_height()) // 2
 
 		self.window.fill(s.COLOURS["black"])
 		self.window.blit(pause_text, (x, y))
