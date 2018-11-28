@@ -6,13 +6,16 @@ class WorldObject:
 	"""Represents a single renderable object in a level. Should always be subclassed."""
 
 	def __init__(self, quant=3):
+		self.offset_y = None
+		self.sprite = None
+		self.offset = None
 		self.rendered_area = 0
 		self.quantifier = quant
 
 	def non_renderable(self):
 		"""Returns True if this object doesn't actually have a sprite that appears on
 			screen (usually means it's only there for collision detection)."""
-		return self.sprite["path"] == None
+		return self.sprite["path"] is None
 
 	def screen_dim(self, dimension, screen_pos):
 		return int(self.sprite[dimension] * screen_pos * s.ROAD_WIDTH * self.quantifier)
