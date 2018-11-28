@@ -3,18 +3,18 @@
 import level as l
 
 segments = []
-sprites  = []
-name     = "goldcoast"
+sprites = []
+name = "goldcoast"
 
 segments += l.add_straight(100, 0)
 segments += l.add_hill(50, 50, 50, 40, l.last_y(segments))
 segments += l.add_straight(500, l.last_y(segments))
 segments += l.add_hill(30, 30, 30, 20, l.last_y(segments))
 segments += l.add_straight(200, l.last_y(segments))
-segments += l.add_corner(30, 45, 40, 6, l.last_y(segments)) #1155
+segments += l.add_corner(30, 45, 40, 6, l.last_y(segments))  # 1155
 segments += l.add_straight(90, l.last_y(segments))
-segments += l.add_hill(30, 30, 30, 0, l.last_y(segments)) #1335
-segments += l.add_straight(150, l.last_y(segments)) # 1485
+segments += l.add_hill(30, 30, 30, 0, l.last_y(segments))  # 1335
+segments += l.add_straight(150, l.last_y(segments))  # 1485
 print("Segments: %d" % len(segments))
 segments += l.add_corner(30, 45, 40, 6, l.last_y(segments))
 segments += l.add_straight(200, l.last_y(segments))

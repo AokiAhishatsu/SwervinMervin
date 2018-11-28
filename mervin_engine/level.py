@@ -27,7 +27,7 @@ class Level:
 
 	def build(self):
 		"""Reads the level file and builds a level by populating the segments array."""
-		build_path = lambda p: os.path.join("swervin_mervin", "levels", p, "{0}.csv".format(self.slug))
+		build_path = lambda p: os.path.join("mervin_engine", "levels", p, "{0}.csv".format(self.slug))
 
 		with open(build_path("tracks"), "r") as csvfile:
 			for row in csv.reader(csvfile):

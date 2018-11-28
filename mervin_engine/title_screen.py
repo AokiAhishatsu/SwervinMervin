@@ -65,8 +65,8 @@ class TitleScreen:
 
 	def state_1_step(self, window):
 		if not self.state == 0:
-			center_a = ((s.DIMENSIONS[0] - self.logo_a.get_width()) / 2)
-			center_b = ((s.DIMENSIONS[0] - self.logo_b.get_width()) / 2)
+			center_a = ((s.DIMENSIONS[0] - self.logo_a.get_width()) // 2)
+			center_b = ((s.DIMENSIONS[0] - self.logo_b.get_width()) // 2)
 
 			window.blit(self.logo_b, (self.logo_b_off, 158))
 			window.blit(self.logo_a, (self.logo_a_off, 34))
@@ -83,11 +83,11 @@ class TitleScreen:
 		if self.state == 2:
 			w, h = s.DIMENSIONS
 
-			if (self.frame / 20) % 2 == 1:
+			if (self.frame // 20) % 2 == 1:
 				self.ready = True
 
 				ic = self.font.render("Press Start", 1, s.COLOURS["red"])
-				x = (w - ic.get_size()[0]) / 2
+				x = (w - ic.get_size()[0]) // 2
 				y = (h - ic.get_size()[1]) - 120
 
 				window.blit(ic, (x, y))

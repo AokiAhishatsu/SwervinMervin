@@ -11,7 +11,7 @@ class WorldObject:
 
 	def non_renderable(self):
 		"""Returns True if this object doesn't actually have a sprite that appears on
-           screen (usually means it's only there for collision detection)."""
+			screen (usually means it's only there for collision detection)."""
 		return self.sprite["path"] == None
 
 	def screen_dim(self, dimension, screen_pos):
